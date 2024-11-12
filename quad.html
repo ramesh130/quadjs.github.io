@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2x2 Grid of Iframes</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .grid-item {
+            width: 100%;
+            aspect-ratio: 4/3;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container" id="iframeGrid"></div>
+
+    <script>
+        const gridContainer = document.getElementById('iframeGrid');
+        const streamIds = ['k9Mwad/multiview', 'k9Mwad/multiview', 'k9Mwad/multiview', 'k9Mwad/multiview'];
+
+        streamIds.forEach(streamId => {
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://viewer.millicast.com?streamId=\${streamId}`;
+            iframe.allowFullscreen = true;
+
+            gridItem.appendChild(iframe);
+            gridContainer.appendChild(gridItem);
+        });
+    </script>
+</body>
+</html>
